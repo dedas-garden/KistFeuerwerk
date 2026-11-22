@@ -482,6 +482,13 @@ footer{border-top:1px solid var(--line);background:#fff;padding:48px 0 28px;font
 .orow:hover{border-color:var(--text)}
 .orow b{font-size:1.05rem}
 .orow .muted{font-size:.9rem;grid-column:1/-1}
+.sms{display:grid;gap:10px;list-style:none;padding:0;margin:0}
+.sms li{display:grid;gap:4px}
+.sms-h{font-size:.8rem;color:var(--muted)}
+.sms-b{background:#e9f3ec;border-radius:14px 14px 14px 4px;padding:10px 13px;font-size:.93rem;max-width:44ch}
+.plan-sms span:last-child{font-size:.9rem;color:#55554f;border:1px dashed #cfcfca;border-radius:14px 14px 14px 4px;padding:8px 12px;max-width:44ch}
+.routes{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.sms-b{word-break:break-word}
 .tset{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:12px}
 /* Packstation */
 .staff{display:grid;gap:22px}
@@ -607,7 +614,7 @@ footer{border-top:1px solid var(--line);background:#fff;padding:48px 0 28px;font
       </div>
       <div>
         <h3>Abholstation Silvester</h3>
-        <address><span>Nähe A5, Ausfahrt Achern</span><span>THW Übungsgelände</span><span>77855 Achern</span><span style="margin-top:10px"><a href="#feuerwerksverkauf-2026">Öffnungszeiten und Anfahrt</a></span></address>
+        <address><span>Nähe A5, Ausfahrt Achern</span><span>THW Übungsgelände</span><span>77855 Achern</span><span style="margin-top:10px"><a href="#abholung">Öffnungszeiten und Anfahrt</a></span><span><a href="https://maps.app.goo.gl/8GtqnV2oHwhqQB1m9" target="_blank" rel="noopener">Google Maps</a> · <a href="https://maps.apple/p/KhQD6dKQfisqyw" target="_blank" rel="noopener">Apple Karten</a></span></address>
       </div>
       <div>
         <h3>Service</h3>
@@ -739,6 +746,8 @@ const qtyCtl=(id,v,attr)=>`<span class="qty"><button type="button" data-step="-1
 
 /* ---------- Seiten ---------- */
 const V={};
+const MAPS={g:"https://maps.app.goo.gl/8GtqnV2oHwhqQB1m9",a:"https://maps.apple/p/KhQD6dKQfisqyw"};
+const routeBtns=()=>`<span class="routes"><a class="btn btn-line btn-sm" href="${MAPS.g}" target="_blank" rel="noopener">Route mit Google Maps</a><a class="btn btn-line btn-sm" href="${MAPS.a}" target="_blank" rel="noopener">Route mit Apple Karten</a></span>`;
 
 V.start=()=>{
   const offers=P.filter(p=>p.was).slice(0,4);
@@ -807,7 +816,7 @@ V.verkauf=()=>{
     <h2 style="margin-bottom:8px">Unsere Standorte vom 29.–31. Dezember 2026</h2>
     <div class="loc"><div class="a"><span class="tag">Nur Ladenverkauf</span><h3>Kappelrodeck</h3><span>Eis Café Dolce Vita<br>Marktplatz 114, 77876 Kappelrodeck</span><a href="https://www.google.com/maps/search/?api=1&query=Marktplatz+114+77876+Kappelrodeck">Route planen</a></div>${hrs("07:30–19:00","09:00–19:00","09:00–12:30")}</div>
     <div class="loc"><div class="a"><span class="tag">Nur Ladenverkauf</span><h3>Offenburg</h3><span>Ehemals Fa. Bumüller<br>Hauptstraße 98, 77652 Offenburg</span><a href="https://www.google.com/maps/search/?api=1&query=Hauptstra%C3%9Fe+98+77652+Offenburg">Route planen</a></div>${hrs("08:30–18:30","09:00–18:30","09:00–12:00")}</div>
-    <div class="loc"><div class="a"><span class="tag">Nur Abholstation für Vorbestellungen, kein Verkauf</span><h3>Achern</h3><span>THW Übungsgelände<br>77855 Achern-Renchen</span><a href="https://www.google.com/maps/search/?api=1&query=THW+%C3%9Cbungsgel%C3%A4nde+Achern">Route planen</a></div>
+    <div class="loc"><div class="a"><span class="tag">Nur Abholstation für Vorbestellungen, kein Verkauf</span><h3>Achern</h3><span>THW Übungsgelände<br>77855 Achern-Renchen</span>${routeBtns()}</div>
       <div>${hrs("07:30–19:00","09:00–19:00","09:00–12:30")}
       <p style="margin-top:16px"><b>Anfahrt:</b> An der A5-Ausfahrt Achern Richtung Frankreich fahren. Nach etwa 1 km links abbiegen, nach etwa 500 m die erste Straße rechts. Nach weiteren 100 m liegt das Gelände auf der rechten Seite.</p>
       <p class="muted" style="margin-top:8px">Wer für jemand anderen abholt, braucht eine Vollmacht und eine Ausweiskopie des Bestellers.</p></div></div>
@@ -931,10 +940,10 @@ V.warenkorb=()=>{
           <ul>
             <li><b>Vorbestellung bis 20.12.2026, 18:00 Uhr.</b> Einige Artikel gibt es nur per Vorbestellung, solange der Vorrat reicht.</li>
             <li><b>Bezahlung per Überweisung (Vorkasse) oder PayPal.</b> Bei Überweisung sind deine Artikel 14 Tage reserviert. Geht in dieser Zeit keine Zahlung ein, wird die Reservierung storniert.</li>
-            <li><b>Abholung vom 29. bis 31.12.2026 an der Abholstation in Achern</b> (THW-Übungsgelände, nahe A5-Ausfahrt Achern). Abholtag und Uhrzeit wählst du in der Kasse. <a href="#abholung">Öffnungszeiten und Anfahrt</a></li>
+            <li><b>Abholung vom 29. bis 31.12.2026 an der Abholstation in Achern</b> (THW-Übungsgelände, nahe A5-Ausfahrt Achern). Abholtag und Uhrzeit wählst du in der Kasse. <a href="#abholung">Öffnungszeiten</a> · <a href="${MAPS.g}" target="_blank" rel="noopener">Google Maps</a> · <a href="${MAPS.a}" target="_blank" rel="noopener">Apple Karten</a></li>
             <li><b>Ausweis oder Führerschein mitbringen.</b> Holt jemand anderes ab, braucht er eine Vollmacht und eine Kopie deines Ausweises.</li>
             <li><b>Nachbestellen bis 20.12.:</b> Bestell einfach nochmal, während du angemeldet bist. Wir packen alles automatisch in dein bestehendes Paket.</li>
-            <li><b>Kundenkonto:</b> Dort siehst du jederzeit, wo deine Bestellung steht, von bestellt bis abholbereit. Auf Wunsch erinnern wir dich einen Tag vorher per SMS.</li>
+            <li><b>Kundenkonto:</b> Dort siehst du jederzeit, wo deine Bestellung steht, von bestellt bis abholbereit. Auf Wunsch bekommst du eine SMS, sobald dein Paket verpackt ist, und eine Erinnerung einen Tag vor der Abholung.</li>
             <li>In Kappelrodeck und Offenburg gibt es keinen Abholservice, dort ist reiner Ladenverkauf.</li>
           </ul>
         </div>
@@ -1060,7 +1069,7 @@ V.faq=()=>{
    ["Wo hole ich meine Vorbestellung ab?","An der Abholstation auf dem THW-Übungsgelände in 77855 Achern-Renchen. Von der A5-Ausfahrt Achern Richtung Frankreich, nach etwa 1 km links, nach etwa 500 m die erste Straße rechts. Nach weiteren 100 m liegt das Gelände rechts."],
    ["Was brauche ich zur Abholung?","Einen Ausweis oder Führerschein. Holt jemand anderes für dich ab, braucht er zusätzlich eine Vollmacht und eine Kopie deines Ausweises."],
    ["Kann ich eine bezahlte Bestellung ändern?","Nein. Du kannst aber bis zum 20.12. nachbestellen: Bestell einfach nochmal, während du in deinem Kundenkonto angemeldet bist. Wir packen alles automatisch in dein bestehendes Paket."],
-   ["Wo sehe ich, wie weit meine Bestellung ist?","In deinem Kundenkonto unter „Meine Bestellungen“. Dort steht, ob deine Zahlung da ist, ob dein Paket gepackt ist und wann du es abholen kannst."],
+   ["Wo sehe ich, wie weit meine Bestellung ist?","In deinem Kundenkonto unter „Meine Bestellungen“. Dort steht, ob deine Zahlung da ist, ob dein Paket gerade verpackt wird oder schon fertig ist und wann du es abholen kannst. Ist es verpackt, bekommst du auf Wunsch eine SMS."],
    ["Wo ist der Ladenverkauf?","An Silvester an zwei Standorten: im Eis Café Dolce Vita, Marktplatz 114, 77876 Kappelrodeck, und in der Hauptstraße 98, 77652 Offenburg (ehemals Fa. Bumüller)."],
    ["Kann ich F3-Feuerwerk kaufen?","Ja, wenn du eine Erlaubnis nach §27 SprengG hast. Frag dafür bitte direkt bei uns an."]
   ];
@@ -1078,7 +1087,7 @@ V.kontakt=()=>`<div class="wrap page">${crumbs([["Home","start"],["Kontakt",""]]
       <div><span>Mobil</span><a href="tel:+491739624475" class="num">0173 / 9624475</a></div>
       <div><span>E-Mail</span><a href="mailto:info@kistfeuerwerk.de">info@kistfeuerwerk.de</a></div>
       <div><span>Silvestershops</span>Eis Café Dolce Vita, Marktplatz 114, 77876 Kappelrodeck<br>Hauptstraße 98, 77652 Offenburg (ehemals Fa. Bumüller)</div>
-      <div><span>Abholstation Silvester</span>THW-Übungsgelände, 77855 Achern, nahe A5-Ausfahrt Achern</div>
+      <div><span>Abholstation Silvester</span>THW-Übungsgelände, 77855 Achern, nahe A5-Ausfahrt Achern<br><a href="${MAPS.g}" target="_blank" rel="noopener">Google Maps</a> · <a href="${MAPS.a}" target="_blank" rel="noopener">Apple Karten</a></div>
       <div><span>Social Media</span><span style="color:inherit"><a href="https://www.facebook.com/KistFeuerwerk">Facebook</a> · <a href="https://www.instagram.com/Kistfeuerwerk">Instagram</a> · <a href="https://www.youtube.com/@Kistfeuerwerk">YouTube</a></span></div>
     </div>
     <form id="cForm" novalidate>
@@ -1238,7 +1247,14 @@ const openPkg=mail=>orders.find(o=>o.mail===mail&&!o.parent&&!["abgeholt","storn
 function notify(o,txt){feed.unshift({t:Date.now(),nr:o.nr,txt});feed=feed.slice(0,40)}
 function payMsg(o){const r=o.parent?oBy(o.parent):o;return `${o.nr}${o.parent?` (Nachbestellung zu ${o.parent})`:""} ist bezahlt, bitte packen: ${lineTxt(o)}. Abholung ${DSHORT[r.day]} ${r.time} Uhr.`}
 const nextNr=()=>"KF-"+(Math.max(1030,...orders.map(o=>+o.nr.slice(3)))+1);
-const ST={neu:"Wartet auf Zahlung",bezahlt:"Bezahlt",gepackt:"Gepackt",abgeholt:"Abgeholt",storniert:"Storniert"};
+const ST={neu:"Wartet auf Zahlung",bezahlt:"Wird verpackt",gepackt:"Verpackt",abgeholt:"Abgeholt",storniert:"Storniert"};
+/* SMS an Kunden (Vorschau: wird nur angezeigt, nicht verschickt) */
+const pkgMsgs=root=>[root,...kidsOf(root.nr)].flatMap(o=>o.msgs||[]).sort((a,b)=>b.t-a.t);
+function smsPacked(nrs){const os=nrs.map(oBy),root=os[0].parent?oBy(os[0].parent):os[0],kids=os.filter(o=>o.parent);
+  const c=os.find(o=>o.sms&&(o.tel||"").replace(/\D/g,"").length>5);if(!c)return "";
+  const txt=kids.length&&!os.includes(root)?`Kist Feuerwerk: Hallo ${c.first}, deine Nachbestellung ${kids.map(k=>k.nr).join(", ")} ist mit in dein Paket ${root.nr} verpackt. Abholung ${DSHORT[root.day]} um ${root.time} Uhr in Achern. Bitte Ausweis mitbringen. Route: ${MAPS.g}`
+    :`Kist Feuerwerk: Hallo ${c.first}, deine Bestellung ${root.nr} ist verpackt und liegt für dich bereit. Abholung ${DSHORT[root.day]} um ${root.time} Uhr, Abholstation Achern. Bitte Ausweis mitbringen. Route: ${MAPS.g}`;
+  root.msgs=(root.msgs||[]).concat({t:Date.now(),to:c.tel,txt});return txt}
 const pill=s=>`<span class="pill st-${s}">${ST[s]}</span>`;
 function seedOrders(){
   let r=11;const rn=()=>(r=r*16807%2147483647)/2147483647;
@@ -1250,7 +1266,7 @@ function seedOrders(){
   ppl.forEach(([f,l,d,t,pay,st,ago],i)=>{
     const c=T-ago*D,o={nr:"KF-"+(1031+i*3),first:f,last:l,mail:`${f}.${l}@beispiel.de`.toLowerCase(),tel:`0171 55${20+i} ${40+i*7}`,day:d,time:t,pay,status:st,lines:pick(1+Math.floor(rn()*4)),created:c,hist:{bestellt:c},done:{},sms:i%2===0,demo:1};
     if(st!=="neu")o.hist.bezahlt=pay==="paypal"?c:c+Math.min(ago*.4,2)*D;
-    if(st==="gepackt"){o.hist.gepackt=o.hist.bezahlt+.5*D;o.lines.forEach((x,j)=>o.done[j]=true)}
+    if(st==="gepackt"){o.hist.gepackt=o.hist.bezahlt+.5*D;o.lines.forEach((x,j)=>o.done[j]=true);if(o.sms)o.msgs=[{t:o.hist.gepackt,to:o.tel,txt:`Kist Feuerwerk: Hallo ${f}, deine Bestellung ${o.nr} ist verpackt und liegt für dich bereit. Abholung ${DSHORT[d]} um ${t} Uhr, Abholstation Achern. Bitte Ausweis mitbringen. Route: ${MAPS.g}`}]}
     orders.push(o);
   });
   const kid=(par,nr,ago,n)=>{const p=oBy(par),c=T-ago*D;orders.push({...p,nr,parent:par,lines:pick(n),status:"bezahlt",pay:"paypal",created:c,hist:{bestellt:c,bezahlt:c},done:{}})};
@@ -1281,7 +1297,7 @@ V.kasse=()=>{
   const u=me();
   const aside=`<aside class="sum"><h3>Deine Bestellung</h3><ul>${Object.entries(cart).map(([id,q])=>`<li><span>${q} × ${esc(P[id].name)}</span><span class="num">${eur(P[id].price*q)}</span></li>`).join("")}</ul><div class="l t"><span>Gesamt</span><span>${eur(cartTotal())}</span></div><small>inkl. MwSt. · Abholung kostenlos</small><a href="#cart">Warenkorb bearbeiten</a></aside>`;
   const head=`<div class="wrap page">${crumbs([["Home","start"],["Warenkorb","cart"],["Kasse",""]])}<div class="steps"><span>1 Warenkorb</span><b>2 Daten und Abholung</b><span>3 Bestätigung</span></div><div class="cart">`;
-  if(!u)return head+`<div class="prose"><h1>Fast geschafft</h1><p>Zum Bestellen brauchst du ein Kundenkonto. Darin siehst du jederzeit, wo deine Bestellung gerade steht, kannst bis zum 20.12. nachbestellen und bekommst auf Wunsch eine SMS-Erinnerung vor der Abholung.</p><p class="btnrow"><a class="btn btn-dark" href="#konto" data-next="kasse">Anmelden</a><a class="btn btn-line" href="#konto" data-next="kasse" data-reg>Konto erstellen</a></p><p class="muted">Dein Warenkorb bleibt gespeichert.</p></div>${aside}</div></div>`;
+  if(!u)return head+`<div class="prose"><h1>Fast geschafft</h1><p>Zum Bestellen brauchst du ein Kundenkonto. Darin siehst du jederzeit, wo deine Bestellung gerade steht, kannst bis zum 20.12. nachbestellen und bekommst auf Wunsch eine SMS, sobald dein Paket verpackt ist.</p><p class="btnrow"><a class="btn btn-dark" href="#konto" data-next="kasse">Anmelden</a><a class="btn btn-line" href="#konto" data-next="kasse" data-reg>Konto erstellen</a></p><p class="muted">Dein Warenkorb bleibt gespeichert.</p></div>${aside}</div></div>`;
   const par=openPkg(u.mail),v=x=>esc(u[x]||"");
   return head+`<form id="orderForm" novalidate>
       <fieldset><legend>Deine Daten</legend>
@@ -1297,7 +1313,7 @@ V.kasse=()=>{
       </fieldset>
       <fieldset><legend>Abholung in Achern</legend>
         ${par?`<div class="ok-box"><b>Nachbestellung zu ${par.nr}</b><span>Wir packen alles mit in dein bestehendes Paket. Abholung wie gebucht: <b>${DLONG[par.day]}, ${par.time} Uhr</b>.</span></div>`:`<p class="muted">THW-Übungsgelände, 77855 Achern, nahe A5-Ausfahrt Achern. Wähle Tag und Uhrzeit:</p><div id="slotBox">${slotBox()}</div>`}
-        <label class="chk"><input type="checkbox" id="kSms" ${u.sms!==false?"checked":""}><span class="t">SMS-Erinnerung einen Tag vor der Abholung an meine Handynummer</span></label>
+        <label class="chk"><input type="checkbox" id="kSms" ${u.sms!==false?"checked":""}><span class="t">SMS an meine Handynummer, wenn mein Paket verpackt ist, und eine Erinnerung einen Tag vor der Abholung</span></label>
         <label class="fl">Anmerkung<textarea id="kNote" placeholder="Optional"></textarea></label>
       </fieldset>
       <fieldset><legend>Zahlung</legend>
@@ -1330,10 +1346,10 @@ V.order=nr=>{
   const root=o.parent?oBy(o.parent):o,kids=kidsOf(root.nr).filter(k=>k.nr!==o.nr);
   const thanks=ss.get("kf3_thanks")===nr;if(thanks)ss.del("kf3_thanks");
   const di={neu:0,bezahlt:1,gepackt:2,abgeholt:4,storniert:-1}[o.status];
-  const steps=[["Bestellt",fdt(o.hist.bestellt)],["Bezahlt",o.hist.bezahlt&&fdt(o.hist.bezahlt)],["Gepackt",o.hist.gepackt&&fdt(o.hist.gepackt)],["Abholbereit",`${DSHORT[root.day]} ab ${root.time} Uhr`],["Abgeholt",o.hist.abgeholt&&fdt(o.hist.abgeholt)]];
+  const steps=[["Bestellt",fdt(o.hist.bestellt)],["Bezahlt",o.hist.bezahlt&&fdt(o.hist.bezahlt)],[o.hist.gepackt?"Verpackt":"Wird verpackt",o.hist.gepackt&&fdt(o.hist.gepackt)],["Abholbereit",`${DSHORT[root.day]} ab ${root.time} Uhr`],["Abgeholt",o.hist.abgeholt&&fdt(o.hist.abgeholt)]];
   const txt={neu:o.pay==="paypal"?"Wir warten auf die Zahlung.":`Wir warten auf deine Überweisung. Bitte überweise bis spätestens ${fd(payBy(o))}.`,
-    bezahlt:o.parent?`Zahlung ist da. Wir packen die Artikel mit in dein Paket ${root.nr}.`:"Zahlung ist da. Wir packen jetzt dein Paket.",
-    gepackt:`Dein Paket ist gepackt und liegt für dich bereit. Abholung am ${DLONG[root.day]} um ${root.time} Uhr.`,
+    bezahlt:(o.parent?`Zahlung ist da. Die Artikel werden jetzt mit in dein Paket ${root.nr} verpackt.`:"Zahlung ist da. Dein Paket wird jetzt verpackt.")+(o.sms?" Sobald es fertig ist, bekommst du eine SMS.":""),
+    gepackt:`Dein Paket ist verpackt und liegt für dich bereit. Abholung am ${DLONG[root.day]} um ${root.time} Uhr.`,
     abgeholt:"Abgeholt. Wir wünschen dir einen guten Rutsch!",storniert:"Diese Bestellung wurde storniert."}[o.status];
   const [lc,ll]=LV(load(root.day,root.time));
   return `<div class="wrap page">${crumbs([["Home","start"],["Mein Konto","konto"],[nr,""]])}
@@ -1345,13 +1361,18 @@ V.order=nr=>{
     <div class="ogrid">
       ${o.status==="neu"&&o.pay==="vorkasse"?`<div class="ibox"><h3>Bitte überweisen</h3><dl class="bank"><dt>Empfänger</dt><dd>Kist Feuerwerk</dd><dt>IBAN</dt><dd class="num">DE00 1234 5678 9012 3456 78</dd><dt>Betrag</dt><dd class="num">${eur(oTotal(o))}</dd><dt>Verwendungszweck</dt><dd class="num">${o.nr}</dd><dt>Bis spätestens</dt><dd>${fd(payBy(o))}</dd></dl><p class="demo-note">Beispiel-Bankverbindung, nur Vorschau.</p><p><button class="btn btn-line btn-sm" data-paypal="${o.nr}">Stattdessen mit PayPal bezahlen</button></p></div>`:""}
       <div class="ibox"><h3>Abholung</h3>
-        <p><b>${DLONG[root.day]}, ${root.time} Uhr</b><br>Abholstation Achern, THW-Übungsgelände, nahe A5-Ausfahrt Achern · <a href="#abholung">Anfahrt</a></p>
+        <p><b>${DLONG[root.day]}, ${root.time} Uhr</b><br>Abholstation Achern, THW-Übungsgelände, nahe A5-Ausfahrt Achern</p>
+        ${routeBtns()}
         <p>Erwartete Auslastung um diese Zeit: <span class="lvl ${lc}">${ll}</span></p>
         <p>Deine Abholnummer<br><span class="code-big">${root.nr}</span></p>
         <p class="muted">Bitte bring deinen Ausweis oder Führerschein mit.</p>
-        <p>${o.sms?`SMS-Erinnerung am ${DBEFORE[root.day]} um 18:00 Uhr an ${maskTel(o.tel)}`:`Keine SMS-Erinnerung. <button class="linkbtn" data-sms="${o.nr}">Jetzt einschalten</button>`}</p>
+        ${o.sms?"":`<p>Keine SMS-Benachrichtigung. <button class="linkbtn" data-sms="${o.nr}">Jetzt einschalten</button></p>`}
       </div>
-      ${o.parent?`<div class="ibox"><h3>Gehört zu Paket ${root.nr}</h3><p>Diese Nachbestellung wird zusammen mit <a href="#bestellung-${root.nr}">${root.nr}</a> gepackt und abgeholt.</p></div>`:""}
+      ${o.sms||pkgMsgs(root).length?`<div class="ibox"><h3>SMS an dich</h3><ul class="sms">${pkgMsgs(root).map(m=>`<li><span class="sms-h">${fdt(m.t)} · an ${maskTel(m.to)}</span><span class="sms-b">${esc(m.txt)}</span></li>`).join("")}
+        ${root.status!=="gepackt"&&root.status!=="abgeholt"&&o.sms?`<li class="plan-sms"><span class="sms-h">Sobald dein Paket verpackt ist</span><span>SMS „Dein Paket ist verpackt und liegt bereit“</span></li>`:""}
+        ${o.sms&&root.status!=="abgeholt"?`<li class="plan-sms"><span class="sms-h">${DBEFORE[root.day]} um 18:00 Uhr · geplant</span><span>Erinnerung an deine Abholung am nächsten Tag, mit Link zur Route</span></li>`:""}</ul>
+        <p class="demo-note">Vorschau: SMS werden hier nur angezeigt, nicht verschickt.</p></div>`:""}
+      ${o.parent?`<div class="ibox"><h3>Gehört zu Paket ${root.nr}</h3><p>Diese Nachbestellung wird zusammen mit <a href="#bestellung-${root.nr}">${root.nr}</a> verpackt und abgeholt.</p></div>`:""}
       ${kids.length?`<div class="ibox"><h3>Auch in diesem Paket</h3><ul class="klist">${kids.map(k=>`<li><a href="#bestellung-${k.nr}">${k.nr}</a> <span class="muted">Nachbestellung · ${oQty(k)} Artikel</span> ${pill(k.status)}</li>`).join("")}</ul></div>`:""}
     </div>
     <aside class="sum"><h3>Artikel</h3><ul>${o.lines.map(([id,q])=>`<li><span>${q} × <a href="#artikel-${id}">${esc(P[id].name)}</a></span><span class="num">${eur(P[id].price*q)}</span></li>`).join("")}</ul>
@@ -1388,7 +1409,7 @@ V.konto=()=>{
           <label class="fl">Vorname *<input id="rVor" autocomplete="given-name"></label>
           <label class="fl">Nachname *<input id="rNach" autocomplete="family-name"></label>
           <label class="fl full">E-Mail *<input id="rMail" type="email" autocomplete="email"></label>
-          <label class="fl full">Handynummer<input id="rTel" type="tel" autocomplete="tel"><span class="hint">Für die SMS-Erinnerung vor der Abholung und den Sicherheitscode.</span></label>
+          <label class="fl full">Handynummer<input id="rTel" type="tel" autocomplete="tel"><span class="hint">Für die SMS, wenn dein Paket verpackt ist, die Erinnerung vor der Abholung und den Sicherheitscode.</span></label>
           <label class="fl full">Passwort *<input id="rPw" type="password" autocomplete="new-password"><span class="hint">Mindestens 8 Zeichen.</span></label>
         </div>
         <div class="opts">
@@ -1420,7 +1441,7 @@ V.konto=()=>{
         <label class="fl full">Straße und Hausnummer<input id="dStr" value="${v("str")}"></label>
         <label class="fl">PLZ<input id="dPlz" inputmode="numeric" value="${v("plz")}"></label><label class="fl">Ort<input id="dOrt" value="${v("ort")}"></label>
       </div>
-      <label class="chk"><input type="checkbox" id="dSms" ${u.sms!==false?"checked":""}><span class="t">SMS-Erinnerung einen Tag vor der Abholung</span></label>
+      <label class="chk"><input type="checkbox" id="dSms" ${u.sms!==false?"checked":""}><span class="t">SMS, wenn mein Paket verpackt ist, und eine Erinnerung einen Tag vor der Abholung</span></label>
       <p><button class="btn btn-line" type="submit">Speichern</button></p>
     </form>
   </div></div>`;
@@ -1456,7 +1477,7 @@ function unitCard(u){
       ${r.note?`<p class="pk-note">Anmerkung vom Kunden: ${esc(r.note)}</p>`:""}
       <div class="pk-act"><button class="btn btn-dark" data-packed="${list.map(o=>o.nr).join(",")}" ${allDone(list)?"":"disabled"}>Paket fertig</button><button class="btn btn-line" data-print>Packzettel drucken</button><span class="muted pk-cnt">${cntTxt(list)}</span></div></article>`}
   return `<article class="pk">${head}
-    <p class="pk-alert"><b>Paket ist schon gepackt.</b> Paket ${r.nr} raussuchen, öffnen und die neuen Artikel dazulegen.</p>
+    <p class="pk-alert"><b>Paket ist schon verpackt.</b> Paket ${r.nr} raussuchen, öffnen und die neuen Artikel dazulegen.</p>
     <div class="pk-sec"><h4>Schon im Paket</h4>${u.inside.map(o=>lineRows(o,0)).join("")}</div>
     ${u.add.map(k=>`<div class="pk-sec new"><h4>Neu dazulegen · ${k.nr}</h4>${lineRows(k,1)}</div>`).join("")}
     <div class="pk-act"><button class="btn btn-dark" data-packed="${u.add.map(o=>o.nr).join(",")}" ${allDone(u.add)?"":"disabled"}>Dazugelegt, Paket wieder zu</button><button class="btn btn-line" data-print>Packzettel drucken</button><span class="muted pk-cnt">${cntTxt(u.add)}</span></div></article>`;
@@ -1467,10 +1488,10 @@ function readyList(){const l=readyPk().filter(r=>!sq||(r.nr+" "+r.first+" "+r.la
       <p class="muted">${[r,...inc].reduce((s,o)=>s+oQty(o),0)} Artikel${inc.length?` · inklusive Nachbestellung ${inc.map(k=>k.nr).join(", ")}`:""}</p>
       ${open.map(k=>`<p class="pk-wait">Nachbestellung ${k.nr} ist nicht bezahlt und nicht im Paket.</p>`).join("")}
       <label class="chk"><input type="checkbox" data-idok="${r.nr}"><span class="t">Ausweis geprüft, Kunde ist mindestens 18</span></label>
-      <div class="pk-act"><button class="btn btn-dark" data-pickup="${r.nr}" disabled>Abgeholt</button></div></article>`}).join(""):`<p class="muted">${sq?"Nichts gefunden.":"Gerade liegt kein fertiges Paket bereit."}</p>`}
+      <div class="pk-act"><button class="btn btn-dark" data-pickup="${r.nr}" disabled>Abgeholt</button></div></article>`}).join(""):`<p class="muted">${sq?"Nichts gefunden.":"Gerade liegt kein verpacktes Paket bereit."}</p>`}
 function staffBody(){
   const U=units(),pay=orders.filter(o=>o.status==="neu").sort((a,b)=>a.created-b.created),rd=readyPk(),gone=orders.filter(o=>!o.parent&&o.status==="abgeholt");
-  const tabs=[["pack","Zu packen",U.length],["pay","Wartet auf Zahlung",pay.length],["ready","Fertig gepackt",rd.length],["done","Abgeholt",gone.length],["plan","Abholplan",""]];
+  const tabs=[["pack","Zu packen",U.length],["pay","Wartet auf Zahlung",pay.length],["ready","Fertig verpackt",rd.length],["done","Abgeholt",gone.length],["plan","Abholplan",""]];
   let body="";
   if(stab==="pack")body=U.length?U.map(unitCard).join(""):'<p class="muted">Alles gepackt. Neue bezahlte Bestellungen erscheinen hier automatisch.</p>';
   if(stab==="pay")body=pay.length?`<div class="plist">${pay.map(o=>`<div class="prow2"><div><b class="num">${o.nr}</b>${o.parent?` <span class="badge">Nachbestellung zu ${o.parent}</span>`:""}<br><span class="muted">${who(o)} · bestellt am ${fd(o.created)} · zahlen bis ${fd(payBy(o))}</span></div><b class="num">${eur(oTotal(o))}</b><button class="btn btn-line btn-sm" data-paid="${o.nr}">Zahlung ist da</button></div>`).join("")}</div><p class="muted">Sobald eine Überweisung auf dem Konto ist, hier bestätigen. Die Bestellung wandert dann zu „Zu packen“ und das Team bekommt eine Nachricht.</p>`:'<p class="muted">Keine offenen Zahlungen.</p>';
@@ -1505,7 +1526,7 @@ document.addEventListener("click",e=>{
   if((b=t.closest("[data-sms]"))){const o=oBy(b.dataset.sms),u=me();if(!(u.tel||"").replace(/\D/g,"")){toast("Bitte speichere zuerst deine Handynummer unter „Mein Konto“.");return}o.sms=true;o.tel=u.tel;saveOrders();rerenderKeep();return}
   if((b=t.closest("[data-stab]"))){stab=b.dataset.stab;rerenderKeep();return}
   if((b=t.closest("[data-paid]"))){const o=oBy(b.dataset.paid);o.status="bezahlt";o.hist.bezahlt=Date.now();notify(o,payMsg(o));saveOrders();toast(`${o.nr} ist bezahlt und steht jetzt unter „Zu packen“.`);rerenderKeep();return}
-  if((b=t.closest("[data-packed]"))){const nrs=b.dataset.packed.split(","),T=Date.now();nrs.forEach(n=>{const o=oBy(n);o.status="gepackt";o.hist.gepackt=T});saveOrders();toast(`Paket ${oBy(nrs[0]).parent||nrs[0]} ist fertig. Der Kunde sieht jetzt „Gepackt“.`);rerenderKeep();return}
+  if((b=t.closest("[data-packed]"))){const nrs=b.dataset.packed.split(","),T=Date.now();nrs.forEach(n=>{const o=oBy(n);o.status="gepackt";o.hist.gepackt=T});const sms=smsPacked(nrs);saveOrders();toast(`Paket ${oBy(nrs[0]).parent||nrs[0]} ist verpackt. ${sms?"SMS an den Kunden: „"+sms+"“":"Der Kunde wollte keine SMS, er sieht „Verpackt“ in seinem Konto."}`);rerenderKeep();return}
   if((b=t.closest("[data-pickup]"))){const r=oBy(b.dataset.pickup),T=Date.now();[r,...kidsOf(r.nr).filter(k=>k.status==="gepackt")].forEach(o=>{o.status="abgeholt";o.hist.abgeholt=T});saveOrders();toast(`${r.nr} abgeholt.`);rerenderKeep();return}
   if((b=t.closest("[data-print]"))){const a=b.closest(".pk");a.classList.add("printing");document.body.classList.add("print-one");window.print();setTimeout(()=>{a.classList.remove("printing");document.body.classList.remove("print-one")},400);return}
   if(t.closest("[data-staff-out]")){ss.del("kf3_staff");route();return}
@@ -1526,7 +1547,7 @@ document.addEventListener("submit",async e=>{
     const par=openPkg(u.mail),err=$("#kErr");
     if(!par&&!K.time){err.textContent="Bitte wähle eine Uhrzeit für die Abholung.";$("#slotBox").scrollIntoView({behavior:"smooth",block:"center"});return}
     const tel=$("#kTel").value.trim(),sms=$("#kSms").checked;
-    if(sms&&tel.replace(/\D/g,"").length<6){$("#kTel").closest(".fl").classList.add("err");err.textContent="Für die SMS-Erinnerung brauchen wir deine Handynummer.";return}
+    if(sms&&tel.replace(/\D/g,"").length<6){$("#kTel").closest(".fl").classList.add("err");err.textContent="Für die SMS brauchen wir deine Handynummer.";return}
     if(!$("#kAge").checked||!$("#kId").checked||!$("#kDs").checked){err.textContent="Bitte bestätige die drei Punkte über dem Bestellknopf.";return}
     const lines=Object.entries(cart).map(([id,q])=>[+id,q]),short=lines.find(([id,q])=>q>stockOf(id));
     if(short){err.textContent=`Von ${P[short[0]].name} sind nur noch ${stockOf(short[0])} Stück da. Bitte passe deinen Warenkorb an.`;return}
@@ -1564,11 +1585,11 @@ document.addEventListener("submit",async e=>{
 /* Änderungen aus einem anderen Tab übernehmen (z. B. Kunde bestellt, Packstation ist offen) */
 window.addEventListener("storage",e=>{
   if(!e.key||!e.key.startsWith("kf3_"))return;
-  const before=feed.length&&feed[0].t;
+  const before=feed.length&&feed[0].t,u0=me(),cnt=()=>u0?orders.filter(o=>o.mail===u0.mail).reduce((n,o)=>n+(o.msgs||[]).length,0):0,sms0=cnt();
   users=store.get("kf3_users",{});orders=store.get("kf3_orders",[])||[];feed=store.get("kf3_feed",[]);stockOv=store.get("kf3_stock",{});cart=store.get("kf3_cart",{});wish=store.get("kf3_wish",[]);
   counts();const h=location.hash.slice(1);
   if(h==="mitarbeiter"||h==="packstation"){rerenderKeep();if(feed.length&&feed[0].t!==before)toast("Neue Nachricht: "+feed[0].txt)}
-  else if(h.startsWith("bestellung-")||h==="konto"||h==="account")rerenderKeep();
+  else if(h.startsWith("bestellung-")||h==="konto"||h==="account"){rerenderKeep();if(cnt()>sms0){const m=orders.filter(o=>o.mail===u0.mail).flatMap(o=>o.msgs||[]).sort((a,b)=>b.t-a.t)[0];toast("Neue SMS: "+m.txt)}}
 });
 
 /* ---------- Menü ---------- */
